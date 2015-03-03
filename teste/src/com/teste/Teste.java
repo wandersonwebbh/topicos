@@ -20,10 +20,11 @@ public class Teste {
 		Aluno a2 = new Aluno("Lurdinha", "12343434343", 1234L, new Date());
 		Aluno a3 = new Aluno("João", "12343434343", 1234L, new Date());
 		
-		
+	
 		Professor p1 = new Professor("Jose", "5454545454545454", new BigDecimal(1500));
 		Professor p2 = new Professor("Julesca", "5454545454545454", new BigDecimal(5500));
-		
+		System.out.println(Aluno.verificaMatricula("1234567"));
+		System.out.println("chamando o BONUS professor "+Professor.BONUS);
 		System.out.println(a1);
 		System.out.println("");
 		System.out.println(a2);

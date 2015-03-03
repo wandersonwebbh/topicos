@@ -27,6 +27,17 @@ public class Aluno extends Pessoa {
 	public void setDataAniversario(Date dataAniversario) {
 		this.dataAniversario = dataAniversario;
 	}
+	public static boolean verificaMatricula(String matricula){
+		if(matricula == null){
+			return false;
+		}else if (matricula.trim().equals("")){
+			return false;
+		}else if (matricula.length() != 8){
+			return false;
+		}else{
+			return true;
+		}
+	}
 
 	@Override
 	public String toString() {
