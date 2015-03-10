@@ -1,10 +1,13 @@
 package com.teste;
 
 import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 import com.teste.entidade.Aluno;
 import com.teste.entidade.Professor;
+import com.teste.persistencia.JDBCUtil;
 
 public class Teste {
 
@@ -28,6 +31,7 @@ public class Teste {
 		Professor p2 = new Professor(05L, "Julesca", "5454545454545454", new BigDecimal(5500));
 		
 		System.out.println(Aluno.verificaMatricula("12345678"));
+		System.out.println("");
 		System.out.println("chamando o BONUS professor "+Professor.BONUS);
 		
 		System.out.println("");
@@ -42,6 +46,20 @@ public class Teste {
 		
 		System.out.println(p1);
 		System.out.println(p2);
+		
+		try {
+			ResultSet res = JDBCUtil.getConnector().prepareStatement("select * from tb_aluno").executeQuery();
+			while (res.next()){
+				System.out.println(res.getLong("id")+"\t"+res.getString("nome"));
+			}
+			JDBCUtil.closeConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
