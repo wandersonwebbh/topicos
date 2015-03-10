@@ -3,6 +3,9 @@ package com.teste;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.teste.entidade.Aluno;
+import com.teste.entidade.Professor;
+
 public class Teste {
 
 	public static void main(String[] args) {
@@ -16,13 +19,13 @@ public class Teste {
 		
 		//Professor p1 = new Professor("Jose", "123456789", new BigDecimal(1500));
 		//Professor p2 = new Professor("Julesca", "434343434343434");
-		Aluno a1 = new Aluno("João", "12343434343", 1234L, new Date());
-		Aluno a2 = new Aluno("Lurdinha", "12343434343", 1234L, new Date());
-		Aluno a3 = new Aluno("João", "12343434343", 1234L, new Date());
+		Aluno a1 = new Aluno(01L,"João", "12343434343", 1234L, new Date());
+		Aluno a2 = new Aluno(02L, "Lurdinha", "12343434343", 1234L, new Date());
+		Aluno a3 = new Aluno(03L, "João", "12343434343", 1234L, new Date());
 		
 	
-		Professor p1 = new Professor("Jose", "5454545454545454", new BigDecimal(1500));
-		Professor p2 = new Professor("Julesca", "5454545454545454", new BigDecimal(5500));
+		Professor p1 = new Professor(04L, "Jose", "5454545454545454", new BigDecimal(1500));
+		Professor p2 = new Professor(05L, "Julesca", "5454545454545454", new BigDecimal(5500));
 		
 		System.out.println(Aluno.verificaMatricula("12345678"));
 		System.out.println("chamando o BONUS professor "+Professor.BONUS);

@@ -1,4 +1,4 @@
-package com.teste;
+package com.teste.entidade;
 
 import java.util.Date;
 
@@ -6,8 +6,8 @@ public class Aluno extends Pessoa {
 	private Long matricula;
 	private Date dataAniversario;
 
-	public Aluno(String nome, String cpf, Long matricula, Date dataAniversario) {
-		super(nome, cpf);
+	public Aluno(Long id, String nome, String cpf, Long matricula, Date dataAniversario) {
+		super(id, nome, cpf);
 		this.matricula = matricula;
 		this.dataAniversario = dataAniversario;
 	}
