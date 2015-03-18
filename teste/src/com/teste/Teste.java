@@ -47,6 +47,7 @@ public class Teste {
 		System.out.println(p1);
 		System.out.println(p2);
 		
+		System.out.println("");		
 		try {
 			ResultSet res = JDBCUtil.getConnector().prepareStatement("select * from tb_aluno").executeQuery();
 			while (res.next()){
