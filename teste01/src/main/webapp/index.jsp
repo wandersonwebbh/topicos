@@ -2,7 +2,7 @@
 <html>
 <body>
 <center>
-<h1>Teste 01</h1>
+<h2>Teste 01</h2>
 </center>
 <%
    Date date = new Date();
