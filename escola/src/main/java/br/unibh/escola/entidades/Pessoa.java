@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -23,14 +24,16 @@ public abstract class Pessoa {
 	private Long id;
 	
 	@NotBlank
+	@Pattern(regexp = "[A-Za-zÀ-ú ]*")
 	@Size(min = 5, max = 100)
 	@Column(name="nome",length=100,nullable=false)
 	private String nome;
 	
 	@NotBlank
+	@NotNull
 	@Size(min=14, max=14)	
-	@Pattern(regexp="\\(\\d{3}\\).\\d{3}\\).\\d{3}-\\d{2}")
-	@Column(name="cpf", unique = true, nullable = false)
+	@Pattern(regexp="\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}", message="formato correto (000.000.000-00)")
+	@Column(name="cpf", unique = true)
 	private String cpf;
 
 	public Pessoa(){}
