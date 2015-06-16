@@ -8,16 +8,19 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+import br.unibh.escola.entidades.Disciplina;
 import br.unibh.escola.entidades.Sala;
 
 @Stateless
 @LocalBean
+
 public class ServicoSala implements DAO<Sala, Long> {
+	
 	@Inject
 	EntityManager em;
 	@Inject
 	private Logger log;
-
+	
 	@Override
 	public Sala insert(Sala t) throws Exception {
 		log.info("Persistindo " + t);
@@ -43,29 +46,30 @@ public class ServicoSala implements DAO<Sala, Long> {
 		log.info("Encontrando Sala " + k);
 		return em.find(Sala.class, k);
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Sala> findAll() throws Exception {
-		log.info("Encontrando Sala");
+		log.info("Encontrando todas as salas");
 		return em.createQuery("from Sala").getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Sala> findBycapacidade(int capacidade) throws Exception {
-		log.info("Encontrando Sala " + capacidade);
-		return em.createNamedQuery("Sala.findBycapacidade")
+	@Override
+	public List<Sala> findByCapacidade(int capacidade) throws Exception {
+		log.info("Encontrando as salas " + capacidade);
+		return em.createNamedQuery("Sala.findByCapacidade")
 				.setParameter("capacidade", capacidade).getResultList();
 	}
-
+	
 	@Override
-	public List<Sala> findByName(String name) throws Exception {
+	public List<Sala> findByName(String nome) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Sala> findBycapacidade(Integer capacidade) throws Exception {
+	public List<Disciplina> findByNomeECurso(String nome, String curso) {
 		// TODO Auto-generated method stub
 		return null;
 	}

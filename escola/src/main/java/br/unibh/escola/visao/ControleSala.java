@@ -1,6 +1,5 @@
 package br.unibh.escola.visao;
 
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -17,98 +16,25 @@ import br.unibh.escola.negocio.ServicoSala;
 @ManagedBean(name = "salamb")
 @ViewScoped
 public class ControleSala {
-
 	@Inject
 	private Logger log;
 	@Inject
 	private ServicoSala sa;
 	private Sala sala;
-	private String nomeArg;
+	private String capacidadeArg;
 	private Long id;
-	private String codigo;
-	private Integer capacidade;
-	private Boolean possuiQuadroBranco;
-	private Boolean possuiDataShow;
-	private Boolean possuiComputador;
-	private String observacao;
-	private Integer status;
-	private Date dataTerminoManutencao;
-	private List<Sala> salaes;
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
-	public Integer getCapacidade() {
-		return capacidade;
-	}
-
-	public void setCapacidade(Integer capacidade) {
-		this.capacidade = capacidade;
-	}
-
-	public Boolean getPossuiQuadroBranco() {
-		return possuiQuadroBranco;
-	}
-
-	public void setPossuiQuadroBranco(Boolean possuiQuadroBranco) {
-		this.possuiQuadroBranco = possuiQuadroBranco;
-	}
-
-	public Boolean getPossuiDataShow() {
-		return possuiDataShow;
-	}
-
-	public void setPossuiDataShow(Boolean possuiDataShow) {
-		this.possuiDataShow = possuiDataShow;
-	}
-
-	public Boolean getPossuiComputador() {
-		return possuiComputador;
-	}
-
-	public void setPossuiComputador(Boolean possuiComputador) {
-		this.possuiComputador = possuiComputador;
-	}
-
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
-
-	public Date getDataTerminoManutencao() {
-		return dataTerminoManutencao;
-	}
-
-	public void setDataTerminoManutencao(Date dataTerminoManutencao) {
-		this.dataTerminoManutencao = dataTerminoManutencao;
-	}
+	private List<Sala> salas;
 
 	public Sala getSala() {
 		return sala;
 	}
 
-	public String getNomeArg() {
-		return nomeArg;
+	public String getCapacidadeArg() {
+		return capacidadeArg;
 	}
 
-	public void setNomeArg(String nomeArg) {
-		this.nomeArg = nomeArg;
+	public void setCapacidadeArg(String capacidadeArg) {
+		this.capacidadeArg = capacidadeArg;
 	}
 
 	public Long getId() {
@@ -119,15 +45,15 @@ public class ControleSala {
 		this.id = id;
 	}
 
-	public List<Sala> getSalaes() {
-		return salaes;
+	public List<Sala> getSalas() {
+		return salas;
 	}
 
 	@PostConstruct
 	public void inicializaLista() {
 		log.info("Executando o MB de Sala");
 		try {
-			salaes = sa.findAll();
+			salas = sa.findAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -149,14 +75,13 @@ public class ControleSala {
 			return;
 		}
 		facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"Sala gravado com sucesso!", "");
+				"Gravado com Sucesso! ", "");
 		FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
 	}
 
 	public void pesquisar() {
 		try {
-			
-			salaes = sa.findBycapacidade(Integer.parseInt(nomeArg));
+			salas = sa.findByCapacidade(Integer.parseInt(capacidadeArg));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -187,5 +112,30 @@ public class ControleSala {
 			e.printStackTrace();
 		}
 		sala = null;
+	}
+
+	public String getBooleanString(boolean s) {
+		return s ? "Sim" : "Não";
+	}
+
+	public String getStatusString(int s) {
+		String result;
+
+		switch(s){
+		case 1:
+			result = "Ativo";
+			break;
+		case 2:
+			result = "Em Manutenção";
+			break;
+		case 3:
+			result = "Desativado";
+			break;
+		default:
+			result = "";
+			break;
+		}
+
+		return result;
 	}
 }

@@ -2,21 +2,18 @@ package br.unibh.escola.visao;
 
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-
 import br.unibh.escola.entidades.Professor;
 import br.unibh.escola.negocio.ServicoProfessor;
 
 @ManagedBean(name = "professormb")
 @ViewScoped
 public class ControleProfessor {
-
 	@Inject
 	private Logger log;
 	@Inject
@@ -76,7 +73,7 @@ public class ControleProfessor {
 			return;
 		}
 		facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"Professor gravado com sucesso!", "");
+				"Gravado com Sucesso! ", "");
 		FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
 	}
 

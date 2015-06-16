@@ -14,15 +14,15 @@
 						style="font-size:15px;font-weight:bold" />
 					<rich:messages />
 					<h:panelGrid columns="3">
-						<h:outputLabel value="Nome " />
+						<h:outputLabel value="Nome: " />
 						<h:inputText id="nome" value="#{professormb.professor.nome}"
 							size="50" />
 						<h:message for="nome" errorClass="invalid" />
-						<h:outputLabel value="CPF " />
+						<h:outputLabel value="CPF: " />
 						<h:inputText id="cpf" value="#{professormb.professor.cpf}"
 							size="14" />
 						<h:message for="cpf" errorClass="invalid" />
-						<h:outputLabel value="Salário " />
+						<h:outputLabel value="Salário: " />
 						<h:inputText id="salario" value="#{professormb.professor.salario}"
 							size="10" />
 						<h:message for="salario" errorClass="invalid" />
@@ -34,7 +34,7 @@
 				</rich:panel>
 			</h:form>
 		</h:panelGroup>
-		<rich:panel>
+		<rich:panel rendered="#{empty professormb.professor}"> 
 			<h:outputText value="Lista de Professor"
 				style="font-size:15px;font-weight:bold" />
 			<h:form id="arg">
@@ -52,7 +52,7 @@
 				</rich:toolbar>
 			</h:form>
 			<h:panelGroup rendered="#{empty professormb.professores}">
-				<h:outputText value="Nenhum professor existe" />
+				<h:outputText value="Professor não Encontrado!" />
 			</h:panelGroup>
 			<h:form id="edt">
 				<rich:dataTable id="tabela" var="professor"

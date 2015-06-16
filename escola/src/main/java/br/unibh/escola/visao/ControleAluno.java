@@ -1,22 +1,18 @@
 package br.unibh.escola.visao;
-
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean; 
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-
 import br.unibh.escola.entidades.Aluno;
 import br.unibh.escola.negocio.ServicoAluno;
 
 @ManagedBean(name = "alunomb")
 @ViewScoped
 public class ControleAluno {
-
 	@Inject
 	private Logger log;
 	@Inject
@@ -76,7 +72,7 @@ public class ControleAluno {
 			return;
 		}
 		facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"Aluno gravado com sucesso!", "");
+				"Gravado com Sucesso! ", "");
 		FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
 	}
 
