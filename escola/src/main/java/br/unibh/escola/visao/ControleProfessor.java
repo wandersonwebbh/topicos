@@ -2,12 +2,14 @@ package br.unibh.escola.visao;
 
 import java.util.List;
 import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+
 import br.unibh.escola.entidades.Professor;
 import br.unibh.escola.negocio.ServicoProfessor;
 
@@ -48,30 +50,26 @@ public class ControleProfessor {
 	}
 
 	@PostConstruct
-	public void inicializaLista() {
-		log.info("Executando o MB de Professor");
-		try {
-			Professores = sa.findAll();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void inicializaLista() throws Exception {
+	log.info("Executando o MB de Professor");
+	Professores = sa.findAll();
 	}
 
-	public void gravar() {
+	public void gravar() throws Exception{
 		FacesMessage facesMsg;
-		try {
+//		try {
 			if (Professor.getId() == null) {
 				Professor = sa.insert(Professor);
 			} else {
 				Professor = sa.update(Professor);
 			}
-		} catch (Exception e) {
-			facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: "
-					+ e.getMessage(), "");
-			FacesContext.getCurrentInstance().addMessage("messagePanel",
-					facesMsg);
-			return;
-		}
+//		} catch (Exception e) {
+//			facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: "
+//					+ e.getMessage(), "");
+//			FacesContext.getCurrentInstance().addMessage("messagePanel",
+//					facesMsg);
+//			return;
+//		}
 		facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"Gravado com Sucesso! ", "");
 		FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
@@ -106,6 +104,7 @@ public class ControleProfessor {
 	public void excluir() {
 		try {
 			sa.delete(sa.find(id));
+			Professor = (Professor)sa.findByName(nomeArg);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

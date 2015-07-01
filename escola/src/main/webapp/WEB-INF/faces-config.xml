@@ -20,6 +20,11 @@
 		<converter-id>ConversorAluno</converter-id>
 		<converter-class>br.unibh.escola.visao.ConversorAluno</converter-class>
 	</converter>
+
+	<factory>
+		<exception-handler-factory>br.unibh.escola.visao.CustomExceptionHandlerFactory</exception-handler-factory>
+	</factory>
+	
 	<!-- This descriptor activates the JSF 2.0 Servlet -->
 
 	<!-- Write your navigation rules here. You are encouraged to use CDI for 

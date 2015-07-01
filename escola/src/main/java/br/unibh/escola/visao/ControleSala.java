@@ -50,13 +50,9 @@ public class ControleSala {
 	}
 
 	@PostConstruct
-	public void inicializaLista() {
-		log.info("Executando o MB de Sala");
-		try {
-			salas = sa.findAll();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void inicializaLista() throws Exception {
+	log.info("Executando o MB de Sala");
+	salas = sa.findAll();
 	}
 
 	public void gravar() {
@@ -108,6 +104,7 @@ public class ControleSala {
 	public void excluir() {
 		try {
 			sa.delete(sa.find(id));
+			sala = (Sala) sa.findByName(capacidadeArg);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

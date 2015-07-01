@@ -47,30 +47,26 @@ public class ControleAluno {
 	}
 
 	@PostConstruct
-	public void inicializaLista() {
-		log.info("Executando o MB de Aluno");
-		try {
-			alunoes = sa.findAll();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void inicializaLista() throws Exception {
+	log.info("Executando o MB de Aluno");
+	alunoes = sa.findAll();
 	}
 
-	public void gravar() {
+	public void gravar() throws Exception{
 		FacesMessage facesMsg;
-		try {
+//		try {
 			if (aluno.getId() == null) {
 				aluno = sa.insert(aluno);
 			} else {
 				aluno = sa.update(aluno);
 			}
-		} catch (Exception e) {
-			facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: "
-					+ e.getMessage(), "");
-			FacesContext.getCurrentInstance().addMessage("messagePanel",
-					facesMsg);
-			return;
-		}
+//		} catch (Exception e) {
+//			facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: "
+//					+ e.getMessage(), "");
+//			FacesContext.getCurrentInstance().addMessage("messagePanel",
+//					facesMsg);
+//			return;
+//		}
 		facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"Gravado com Sucesso! ", "");
 		FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
@@ -105,6 +101,7 @@ public class ControleAluno {
 	public void excluir() {
 		try {
 			sa.delete(sa.find(id));
+			aluno = (Aluno) sa.findByName(nomeArg);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

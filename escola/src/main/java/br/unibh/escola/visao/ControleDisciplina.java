@@ -121,13 +121,9 @@ public class ControleDisciplina {
 	}
 
 	@PostConstruct
-	public void inicializaLista() {
+	public void inicializaLista() throws Exception {
 		log.info("Executando o MB de Disciplina");
-		try {
-			disciplinas = sd.findAll();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		disciplinas = sd.findAll();
 	}
 
 	public void gravar() {
@@ -179,6 +175,7 @@ public class ControleDisciplina {
 	public void excluir() {
 		try {
 			sd.delete(sd.find(id));
+			disciplina = (Disciplina) sd.findByName(cursoArg);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
